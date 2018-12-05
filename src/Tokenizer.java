@@ -11,7 +11,7 @@ public class Tokenizer {
 
 	public static void tokenize(String i) {
 		File[] files = new File("docs/raw/").listFiles();
-		String pattern = "([a-zA-Z]+|\\s+)([\\p{Punct}&&[^-]]+)([a-zA-Z]*)";
+		String pattern = "([a-zA-Z]+|\\s+)([\\p{Punct}]+)([a-zA-Z]*)";
 		String numPat = "([0-9]+|\\s+)([\\p{Punct}&&[^-.,%]]+)([0-9]*)";
 		String bib = "([0-9]+\\s+)([0-9]+\\s+)([0-9]+)"; // remove numbers at the bottom
 		int count = 0;

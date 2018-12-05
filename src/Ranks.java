@@ -8,6 +8,11 @@ public class Ranks {
 	private double recall;
 	private String snippet;
 
+	public Ranks(int docId, double score) {
+		this.docId = docId;
+		this.score = score;
+	}
+
 	public int getRank() {
 		return rank;
 	}
@@ -56,4 +61,10 @@ public class Ranks {
 		this.snippet = snippet;
 	}
 
+	@Override
+	public String toString() {
+		return "Ranks [rank=" + rank + ", docId=" + docId + ", score=" + score + "]";
+	}
+
+	
 }
