@@ -40,7 +40,8 @@ public class Indexer {
 		Tokenizer.tokenize("case_folding");
 		positionalIndex(1);
 		try {
-			runBM25(loadQueries());
+			//runBM25(loadQueries());
+			runBM25(StopListRun.generateStopListQueries(loadQueries()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
