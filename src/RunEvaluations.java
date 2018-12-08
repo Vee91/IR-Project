@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,15 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 public class RunEvaluations {
-    Map<Integer,List<String>> reldocs;
-    Map<Integer,List<String>> fetchedDocs;
+    static Map<Integer,List<String>> reldocs;
+    static Map<Integer,List<String>> fetchedDocs;
 
     public RunEvaluations(){
         reldocs=new HashMap<Integer, List<String>>();
         fetchedDocs=new HashMap<Integer, List<String>>();
     }
 
-    private void createRelevantDic() throws IOException {
+    private static void createRelevantDic() throws IOException {
         String docContents = new String(Files.readAllBytes(Paths.get("RelevantDoc\\" + "cacm.rel.txt")));
         String[] lines=docContents.split("\n");
         for (String line:
@@ -25,16 +26,16 @@ public class RunEvaluations {
                 v.add(lineContens[2]);
                 return v;
             });
-            reldocs.computeIfAbsent(Integer.parseInt(lineContens[0]),(k)->{
+            if (!reldocs.containsKey(Integer.parseInt(lineContens[0])))
+            {
                 List<String> temp=new ArrayList<String>();
                 temp.add(lineContens[2]);
-                reldocs.put(k,temp);
-                 return temp;
-            });
+                reldocs.put(Integer.parseInt(lineContens[0]),temp);
+            }
         }
     }
 
-    private void createBaseLineDic(String path) throws IOException {
+    private static void createBaseLineDic(String path) throws IOException {
         String docContents = new String(Files.readAllBytes(Paths.get(path)));
         String[] lines=docContents.split("\n");
         for (String line:
@@ -44,17 +45,16 @@ public class RunEvaluations {
                 v.add(lineContens[2]);
                 return v;
             });
-            fetchedDocs.computeIfAbsent(Integer.parseInt(lineContens[0]),(k)->{
+            if(!fetchedDocs.containsKey(Integer.parseInt(lineContens[0])))
+            {
                 List<String> temp=new ArrayList<String>();
                 temp.add(lineContens[2]);
-                fetchedDocs.put(k,temp);
-                return temp;
-            });
+                fetchedDocs.put(Integer.parseInt(lineContens[0]),temp);
+            }
         }
     }
 
-    public void Evaluate()
-    {
+    public static void Evaluate(String outputPath) throws IOException {
         String tableValue="";
         double sumAvgPrecision = 0.0;
         double sumRelevanceRank = 0.0;
@@ -73,6 +73,9 @@ public class RunEvaluations {
                  rank=rank+1;
                  tempBaseDocs.add(doc);
                 List<String> relevantDocs=reldocs.get(entry.getKey());
+                if(relevantDocs==null)
+                    relevantDocs=new ArrayList<>();
+                System.out.println(doc);
                 if (relevantDocs.contains(doc))
                 {
                     if (tempRelDocs.size()==0) {
@@ -100,11 +103,17 @@ public class RunEvaluations {
         double MAP = sumAvgPrecision/reldocs.size();
         double MRR = sumRelevanceRank/reldocs.size();
         tableValue+= "\n" + "MAP is" + " " + MAP + " " + "MRR is" + " " + MRR+"\n";
+
+        Path path = Paths.get(outputPath);
+        byte[] strToBytes = tableValue.getBytes();
+
+        Files.write(path, strToBytes);
     }
 
-    public static void main(String args[]){
-        //createRelevantDic();
-        //createBaseLineDic();
-        //Evaluate();
+    public static void main(String args[]) throws IOException {
+        RunEvaluations re=new RunEvaluations();
+        re.createRelevantDic();
+        re.createBaseLineDic("Results/BM25Run.txt");
+        re.Evaluate("Results/BM25Evaluation.txt");
     }
 }
