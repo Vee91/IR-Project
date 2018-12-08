@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -5,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class QLM {
 
@@ -17,15 +22,22 @@ public class QLM {
 		ii = ii1;
 		docIdMap = docIdMap1;
 		termCount = termCount1;
-		queries.stream().forEach(query -> {
-			List<Ranks> ranks = runJMQLM(query, relevantinfo);
-			System.out.println(query.getQuery());
-			for (Ranks r : ranks) {
-				System.out.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()));
-			}
-			System.out.println("\n");
-			query.setOutput(ranks);
-		});
+		try {
+			PrintWriter writer = new PrintWriter("QLM.txt", "UTF-8");
+			queries.stream().forEach(query -> {
+				List<Ranks> ranks = runJMQLM(query, relevantinfo);
+				writer.println(query.getQuery());
+				for (Ranks r : ranks) {
+					writer.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()) + " " + r.getScore() + " " + r.getDocId());
+				}
+				writer.println("\n");
+				query.setOutput(ranks);
+			});
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static List<Ranks> runJMQLM(Query query, Map<Integer, Set<Integer>> relevantinfo) {
@@ -36,7 +48,7 @@ public class QLM {
 		for (String qt : queryTerms) {
 			try {
 				List<DTF> dtf = ii.get(qt);
-				int cqi = dtf.size();
+				int cqi = dtf.size(); // change
 				int cLength = getCollectionLength(query, dtf);
 				Iterator<DTF> dtfitr = dtf.iterator();
 				while (dtfitr.hasNext()) {
@@ -74,7 +86,7 @@ public class QLM {
 			} catch (NullPointerException ne) {
 			}
 		}
-		return ranks;
+		return returnTopRanks(ranks);
 	}
 
 	private static int getCollectionLength(Query query, List<DTF> dtf) {
@@ -97,4 +109,13 @@ public class QLM {
 		return s.split(" ");
 	}
 
+	private static List<Ranks> returnTopRanks(List<Ranks> ranks) {
+		AtomicInteger counter = new AtomicInteger(1);
+		List<Ranks> resultList = ranks.stream().sorted((a, b) -> Double.compare(b.getScore(), a.getScore())).limit(100)
+				.collect(Collectors.toCollection(ArrayList<Ranks>::new));
+		resultList.stream().forEach(x -> {
+			x.setRank(counter.getAndIncrement());
+		});
+		return resultList;
+	}
 }

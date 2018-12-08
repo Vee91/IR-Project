@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,15 +20,22 @@ public class TfIdf {
 		ii = ii2;
 		docIdMap = docIdMap2;
 		termCount = termCount2;
-		queries.stream().forEach(query -> {
-			List<Ranks> ranks = runTfIdf(query);
-			System.out.println(query.getQuery());
-			for (Ranks r : ranks) {
-				System.out.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()));
-			}
-			System.out.println("\n");
-			query.setOutput(ranks);
-		});
+		try {
+			PrintWriter writer = new PrintWriter("TFIDF.txt", "UTF-8");
+			queries.stream().forEach(query -> {
+				List<Ranks> ranks = runTfIdf(query);
+				writer.println(query.getQuery());
+				for (Ranks r : ranks) {
+					writer.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()) + " " + r.getScore() + " " + r.getDocId());
+				}
+				writer.println("\n");
+				query.setOutput(ranks);
+			});
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static List<Ranks> runTfIdf(Query query) {

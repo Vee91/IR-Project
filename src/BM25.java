@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,23 +15,31 @@ public class BM25 {
 	private static Map<String, List<DTF>> ii = new TreeMap<String, List<DTF>>();
 	private static Map<Integer, String> docIdMap = new HashMap<Integer, String>();
 	private static Map<Integer, Integer> termCount = new HashMap<Integer, Integer>();
-	
-	public static void runBM25(List<Query> queries, Map<String, List<DTF>> ii1, Map<Integer, String> docIdMap1, Map<Integer, Integer> termCount1) {
+
+	public static void runBM25(List<Query> queries, Map<String, List<DTF>> ii1, Map<Integer, String> docIdMap1,
+			Map<Integer, Integer> termCount1) {
 		ii = ii1;
 		docIdMap = docIdMap1;
 		termCount = termCount1;
-		queries.stream().forEach(query -> {
-			List<Ranks> ranks = evaluateQuery(query);
-			System.out.println(query.getQuery());
-			for(Ranks r : ranks) {
-				System.out.println("Rank "+r.getRank() + " " + docIdMap.get(r.getDocId()));
-			}
-			System.out.println("\n");
-			query.setOutput(ranks);
-		});
-		//TODO write output to file
+		try {
+			PrintWriter writer = new PrintWriter("BM25.txt", "UTF-8");
+			queries.stream().forEach(query -> {
+				List<Ranks> ranks = evaluateQuery(query);
+				writer.println(query.getQuery());
+				for (Ranks r : ranks) {
+					writer.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()) + " " + r.getScore() + " " + r.getDocId());
+				}
+				writer.println("\n");
+				query.setOutput(ranks);
+			});
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// TODO write output to file
 	}
-	
+
 	private static List<Ranks> evaluateQuery(Query query) {
 		Set<Integer> relevantDocs = query.getRelevantDocs();
 		boolean relevanceFlag = relevantDocs != null;
@@ -56,7 +67,7 @@ public class BM25 {
 
 		return returnTopRanks(ranks);
 	}
-	
+
 	private static void updateScore(List<Ranks> ranks, int dId, double currentScore) {
 		double oldScore = 0.00;
 		if (ranks.stream().anyMatch(x -> x.getDocId() == dId)) {
@@ -73,7 +84,7 @@ public class BM25 {
 		double k1 = 1.2;
 		double b = 0.75;
 		double k2 = 100;
-		//TODO try different k2
+		// TODO try different k2
 		double R;
 		try {
 			R = (double) relevantDocs.size();

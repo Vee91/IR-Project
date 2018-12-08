@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,20 +35,30 @@ public class Indexer {
 	private static Map<Integer, String> docIdMap = new HashMap<Integer, String>();
 	private static Map<Integer, Integer> termCount = new HashMap<Integer, Integer>();
 	private static Map<String, Integer> docValueMap = new HashMap<String, Integer>();
-	private static final Map<Integer, Set<Integer>> relevantInfo = new HashMap<Integer, Set<Integer>>();
+	private static Map<Integer, Set<Integer>> relevantInfo = new HashMap<Integer, Set<Integer>>();
 
 	public static void main(String[] args) {
 		Tokenizer.tokenize("case_folding");
 		positionalIndex(1);
 		try {
+			PrintWriter writer = new PrintWriter("unigram_index.txt", "UTF-8");
+			for (Entry<String, List<DTF>> e : ii.entrySet()) {
+				writer.print(e.getKey() + " ");
+				writer.print(e.getValue().size() + " ");
+				writer.println(e.getValue());
+			}
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		try {
 			BM25.runBM25(loadQueries(), ii, docIdMap, termCount);
 			//BM25.runBM25(StopListRun.generateStopListQueries(loadQueries()), ii, docIdMap, termCount);
-			//TfIdf.runTfIdf(loadQueries(), ii, docIdMap, termCount);
-			//QLM.runJMQLM(loadQueries(), ii, docIdMap, termCount, relevantInfo);
+			TfIdf.runTfIdf(loadQueries(), ii, docIdMap, termCount);
+			 QLM.runJMQLM(loadQueries(), ii, docIdMap, termCount, relevantInfo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private static List<Query> loadQueries() throws IOException {
@@ -58,7 +70,6 @@ public class Indexer {
 			fileContent.append(currentLine + " ");
 		}
 		fileContent.substring(0, (fileContent.length() - 2));
-		Map<Integer, Set<Integer>> relevantInfo = new HashMap<Integer, Set<Integer>>();
 		loadRelevantInfo();
 		Document doc = Jsoup.parse(fileContent.toString());
 		Elements e = doc.getElementsByTag("DOC");
@@ -85,7 +96,7 @@ public class Indexer {
 			int key = Integer.valueOf(temp[0]);
 			if (relevantInfo.containsKey(key)) {
 				Set<Integer> docs = relevantInfo.get(key);
-				docs.add(docValueMap.get(temp[2]));
+				docs.add(docValueMap.get(temp[2] + ".html"));
 			} else {
 				Set<Integer> docs = new HashSet<Integer>();
 				docs.add(docValueMap.get(temp[2] + ".html"));
@@ -115,7 +126,7 @@ public class Indexer {
 					terms.add(s);
 				}
 				termCount.put(i, terms.size());
-				positionalInvertedIndex(ii, terms, i, nGram);
+				regularInvertedIndex(ii, terms, i, nGram);
 			}
 		}
 
@@ -144,6 +155,47 @@ public class Indexer {
 		db.commit();
 		db.close();
 		System.out.println("Indexing done");
+	}
+	
+	private static void regularInvertedIndex(Map<String, List<DTF>> ii, List<String> terms, int docId,
+			int nGram) {
+
+		for (int i = 0; i < terms.size() - nGram + 1; i++) {
+			String term = "";
+			if (nGram == 1) {
+				term += terms.get(i + 0);
+			}
+			if (ii.get(term) == null) {
+				DTF dtf = new DTF();
+				dtf.setdId(docId);
+				dtf.setTf(1);
+				List<DTF> l = new ArrayList<DTF>();
+				l.add(dtf);
+				ii.put(term, l);
+			} else {
+				boolean flag = false;
+				DTF temp = null;
+				List<DTF> dtf = ii.get(term);
+				Iterator<DTF> itr = dtf.iterator();
+				while(itr.hasNext()) {
+					DTF d = itr.next();
+					temp = d;
+					if(d.getdId() == docId) {
+						flag = true;
+						break;
+					}
+				}
+				if (flag) {
+					int tf = temp.getTf();
+					temp.setTf(tf + 1);;
+				} else {
+					DTF newdtf = new DTF();
+					newdtf.setdId(docId);
+					newdtf.setTf(1);
+					dtf.add(newdtf);
+				}
+			}
+		}
 	}
 
 	private static void positionalInvertedIndex(Map<String, List<DTF>> ii, List<String> terms, int docId, int nGram) {
