@@ -8,9 +8,9 @@ public class Ranks {
 	private double recall;
 	private String snippet;
 
-	public Ranks(int docId, double score) {
-		this.docId = docId;
-		this.score = score;
+	public Ranks(int dId, double currentScore) {
+		this.docId = dId;
+		this.score = currentScore;
 	}
 
 	public int getRank() {

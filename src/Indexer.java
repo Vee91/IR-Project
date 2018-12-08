@@ -10,8 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
@@ -35,125 +33,20 @@ public class Indexer {
 	private static Map<Integer, String> docIdMap = new HashMap<Integer, String>();
 	private static Map<Integer, Integer> termCount = new HashMap<Integer, Integer>();
 	private static Map<String, Integer> docValueMap = new HashMap<String, Integer>();
+	private static final Map<Integer, Set<Integer>> relevantInfo = new HashMap<Integer, Set<Integer>>();
 
 	public static void main(String[] args) {
 		Tokenizer.tokenize("case_folding");
 		positionalIndex(1);
 		try {
-			//runBM25(loadQueries());
-			runBM25(StopListRun.generateStopListQueries(loadQueries()));
+			BM25.runBM25(loadQueries(), ii, docIdMap, termCount);
+			//BM25.runBM25(StopListRun.generateStopListQueries(loadQueries()), ii, docIdMap, termCount);
+			//TfIdf.runTfIdf(loadQueries(), ii, docIdMap, termCount);
+			//QLM.runJMQLM(loadQueries(), ii, docIdMap, termCount, relevantInfo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-	}
-
-	private static void runBM25(List<Query> queries) {
-		queries.stream().forEach(query -> {
-			List<Ranks> ranks = evaluateQuery(query);
-			System.out.println(query.getQuery());
-			for(Ranks r : ranks) {
-				System.out.println("Rank "+r.getRank() + " " + docIdMap.get(r.getDocId()));
-			}
-			System.out.println("\n");
-			query.setOutput(ranks);
-		});
-		//TODO write output to file
-	}
-
-	private static List<Ranks> evaluateQuery(Query query) {
-		Set<Integer> relevantDocs = query.getRelevantDocs();
-		boolean relevanceFlag = relevantDocs != null;
-		List<Ranks> ranks = new ArrayList<Ranks>();
-		int ri = 0, qfi = 0;
-		double avdl = averageLengthofDocs();
-		for (String term : query.getQuery().toLowerCase().split(" ")) {
-			if (!relevanceFlag)
-				ri = 0;
-			else {
-				if (ii.containsKey(term))
-					ri = ri(term, ii.get(term), relevantDocs);
-			}
-			qfi = qfi(query, term);
-			if (ii.containsKey(term)) {
-				List<DTF> dtf = ii.get(term);
-				for (DTF d : dtf) {
-					double currentScore = bm25Score(d.getdId(), d.getTf(), ii.get(term).size(), qfi, ri, relevantDocs,
-							avdl);
-					updateScore(ranks, d.getdId(), currentScore);
-				}
-			}
-
-		}
-
-		return returnTopRanks(ranks);
-	}
-
-	private static List<Ranks> returnTopRanks(List<Ranks> ranks) {
-		AtomicInteger counter = new AtomicInteger(1);
-		List<Ranks> resultList = ranks.stream().sorted((a, b) -> Double.compare(b.getScore(), a.getScore())).limit(100)
-				.collect(Collectors.toCollection(ArrayList<Ranks>::new));
-		resultList.stream().forEach(x -> {
-			x.setRank(counter.getAndIncrement());
-		});
-		return resultList;
-	}
-
-	private static void updateScore(List<Ranks> ranks, int dId, double currentScore) {
-		double oldScore = 0.00;
-		if (ranks.stream().anyMatch(x -> x.getDocId() == dId)) {
-			Ranks r = ranks.stream().filter(x -> x.getDocId() == dId).findFirst().get();
-			oldScore = r.getScore();
-			r.setScore(currentScore + oldScore);
-		} else {
-			ranks.add(new Ranks(dId, currentScore));
-		}
-	}
-
-	private static double bm25Score(int did, int tf, int size, int qfi, int ri, Set<Integer> relevantDocs,
-			double avdl) {
-		double k1 = 1.2;
-		double b = 0.75;
-		double k2 = 100;
-		//TODO try different k2
-		double R;
-		try {
-			R = (double) relevantDocs.size();
-		} catch (NullPointerException ne) {
-			R = 0;
-		}
-		double K = calculateK(k1, b, did, avdl);
-
-		double num1 = ((double) ri + 0.5) / (R - (double) ri + 0.5);
-		double den1 = ((double) size - (double) ri + 0.5) / (termCount.size() - (double) size - R + (double) ri + 0.5);
-		double sec = ((k1 + 1) * (double) tf) / (K + (double) tf);
-		double thr = ((k2 + 1) * (double) qfi) / (k2 + (double) qfi);
-		return (Math.log((num1 / den1) * sec * thr));
-	}
-
-	private static double calculateK(double k1, double b, int did, double avdl) {
-		return k1 * ((1 - b) + b * (double) termCount.get(did) / avdl);
-	}
-
-	private static double averageLengthofDocs() {
-		return termCount.values().stream().mapToDouble(x -> x).average().getAsDouble();
-	}
-
-	private static int qfi(Query query, String term) {
-		int count = 0;
-		for (String word : query.getQuery().toLowerCase().split(" ")) {
-			if (word.equals(term))
-				count++;
-		}
-		return count;
-	}
-
-	private static int ri(String term, List<DTF> dtf, Set<Integer> relevantDocs) {
-		try {
-			return (int) dtf.stream().filter(x -> relevantDocs.stream().anyMatch(y -> y == x.getdId())).count();
-		} catch (NullPointerException nfe) {
-			return 0;
-		}
 	}
 
 	private static List<Query> loadQueries() throws IOException {
@@ -166,7 +59,7 @@ public class Indexer {
 		}
 		fileContent.substring(0, (fileContent.length() - 2));
 		Map<Integer, Set<Integer>> relevantInfo = new HashMap<Integer, Set<Integer>>();
-		loadRelevantInfo(relevantInfo);
+		loadRelevantInfo();
 		Document doc = Jsoup.parse(fileContent.toString());
 		Elements e = doc.getElementsByTag("DOC");
 		Iterator<Element> itr = e.iterator();
@@ -184,7 +77,7 @@ public class Indexer {
 
 	}
 
-	private static void loadRelevantInfo(Map<Integer, Set<Integer>> relevantInfo) throws IOException {
+	private static void loadRelevantInfo() throws IOException {
 		FileHandler f = new FileHandler("docs/queries/cacm.rel.txt", false);
 		String currentLine = null;
 		while ((currentLine = f.readLine()) != null) {
