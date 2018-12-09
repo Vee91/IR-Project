@@ -1,5 +1,6 @@
 package project;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class BM25 {
 	private static Map<Integer, Integer> termCount = new HashMap<Integer, Integer>();
 
 	public static void runBM25(List<Query> queries, Map<String, List<DTF>> ii1,
-			Map<Integer, String> docIdMap1, Map<Integer, Integer> termCount1) {
+			Map<Integer, String> docIdMap1, Map<Integer, Integer> termCount1) throws IOException {
 		for(Entry<String, List<DTF>> e : ii1.entrySet()) {
 			ii.put(e.getKey(), e.getValue());
 		}
@@ -44,6 +45,9 @@ public class BM25 {
 				query.setOutput(ranks);
 			});
 			writer.close();
+			PseudoRelevanceFeedback prf=new PseudoRelevanceFeedback();
+			prf.runPsuedoRelevance(queries,docIdMap);
+
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

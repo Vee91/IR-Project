@@ -44,9 +44,9 @@ public class BaselineRuns {
 			BM25.runBM25(queries, ii, docIdMap, termCount);
 			//BM25.runBM25(StopListRun.generateStopListQueries(loadQueries()), ii,
 			// docIdMap, termCount);
-			TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
-			QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
-			Lucene.runLucene(queries);
+			//TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
+			//QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
+			//Lucene.runLucene(queries);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

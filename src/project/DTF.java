@@ -1,5 +1,6 @@
 package project;
 import java.io.Serializable;
+import java.util.List;
 
 public class DTF implements Serializable {
 
@@ -7,6 +8,21 @@ public class DTF implements Serializable {
 	private int dId;
 	private int tf;
 	private int pos;
+
+
+	// change
+	private List<Integer> positions;
+
+	public List<Integer> getPositions()
+	{
+		return positions;
+	}
+
+	public void setPositions(List<Integer> positions)
+	{
+		this.positions = positions;
+	}
+	//
 
 	public DTF() {
 
