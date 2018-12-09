@@ -52,6 +52,13 @@ public class RunEvaluations {
                 fetchedDocs.put(Integer.parseInt(lineContens[0]),temp);
             }
         }
+        for (Map.Entry<Integer,List<String>> me:
+             fetchedDocs.entrySet()) {
+            if(me.getValue()==null)
+            {
+                fetchedDocs.remove(me.getKey());
+            }
+        }
     }
 
     public static void Evaluate(String outputPath) throws IOException {
@@ -75,7 +82,6 @@ public class RunEvaluations {
                 List<String> relevantDocs=reldocs.get(entry.getKey());
                 if(relevantDocs==null)
                     relevantDocs=new ArrayList<>();
-                System.out.println(doc);
                 if (relevantDocs.contains(doc))
                 {
                     if (tempRelDocs.size()==0) {
