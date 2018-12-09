@@ -1,4 +1,4 @@
-what articles exist which deal with tss (time sharing system), an operating system for ibm computers?
+what articles exist which deal with tss time sharing system an operating system for ibm computers
 Rank 1 CACM-3077 -51.44684185346584 3077
 Rank 2 CACM-2438 -44.94152955817811 2438
 Rank 3 CACM-637 -43.794655926900134 637
@@ -101,7 +101,7 @@ Rank 99 CACM-2989 -31.05656703029281 2989
 Rank 100 CACM-3011 -31.006343321728064 3011
 
 
-i am interested in articles written either by prieve or udo pooch prieve, b. pooch, u.
+i am interested in articles written either by prieve or udo pooch prieve b pooch u
 Rank 1 CACM-2786 -38.45684123243085 2786
 Rank 2 CACM-2534 -34.404937289193356 2534
 Rank 3 CACM-2342 -34.280677284921495 2342
@@ -204,7 +204,7 @@ Rank 99 CACM-1978 -21.016354685975585 1978
 Rank 100 CACM-3114 -21.003746991950926 3114
 
 
-intermediate languages used in construction of multi-targeted compilers; tcoll
+intermediate languages used in construction of multi-targeted compilers tcoll
 Rank 1 CACM-3184 -10.089501995084472 3184
 Rank 2 CACM-1781 -9.991322293595736 1781
 Rank 3 CACM-2855 -9.887160241921695 2855
@@ -307,7 +307,7 @@ Rank 99 CACM-2379 -9.063397038037174 2379
 Rank 100 CACM-2493 -9.062943766189754 2493
 
 
-i'm interested in mechanisms for communicating between disjoint processes, possibly, but not exclusively, in a distributed environment. i would rather see descriptions of complete mechanisms, with or without implementations, as opposed to theoretical work on the abstract problem. remote procedure calls and message-passing are examples of my interests.
+im interested in mechanisms for communicating between disjoint processes possibly but not exclusively in a distributed environment i would rather see descriptions of complete mechanisms with or without implementations as opposed to theoretical work on the abstract problem remote procedure calls and message-passing are examples of my interests
 Rank 1 CACM-2060 -86.76378969630943 2060
 Rank 2 CACM-2851 -84.8875345998112 2851
 Rank 3 CACM-2342 -81.83540321914325 2342
@@ -410,7 +410,7 @@ Rank 99 CACM-1728 -63.819232626453996 1728
 Rank 100 CACM-2688 -63.81550208400697 2688
 
 
-i'd like papers on design and implementation of editing interfaces, window-managers, command interpreters, etc. the essential issues are human interface design, with views on improvements to user efficiency, effectiveness and satisfaction.
+id like papers on design and implementation of editing interfaces window-managers command interpreters etc the essential issues are human interface design with views on improvements to user efficiency effectiveness and satisfaction
 Rank 1 CACM-1829 -59.67601649562134 1829
 Rank 2 CACM-2786 -57.16896097624268 2786
 Rank 3 CACM-1698 -56.76870087676047 1698
@@ -513,7 +513,7 @@ Rank 99 CACM-2188 -43.519790458786076 2188
 Rank 100 CACM-2484 -43.37605547474643 2484
 
 
-interested in articles on robotics, motion planning particularly the geometric and combinatorial aspects. we are not interested in the dynamics of arm motion.
+interested in articles on robotics motion planning particularly the geometric and combinatorial aspects we are not interested in the dynamics of arm motion
 Rank 1 CACM-1379 -43.44591202014043 1379
 Rank 2 CACM-321 -42.63931503631261 321
 Rank 3 CACM-2786 -42.36797903507137 2786
@@ -616,7 +616,7 @@ Rank 99 CACM-3138 -33.66302606274706 3138
 Rank 100 CACM-2003 -33.62205685180968 2003
 
 
-i am interested in distributed algorithms - concurrent programs in which processes communicate and synchronize by using message passing. areas of particular interest include fault-tolerance and techniques for understanding the correctness of these algorithms.
+i am interested in distributed algorithms - concurrent programs in which processes communicate and synchronize by using message passing areas of particular interest include fault-tolerance and techniques for understanding the correctness of these algorithms
 Rank 1 CACM-1601 -62.97653576651676 1601
 Rank 2 CACM-1098 -62.514751739659935 1098
 Rank 3 CACM-2342 -61.637867546039885 2342
@@ -719,7 +719,7 @@ Rank 99 CACM-2421 -51.62804149202959 2421
 Rank 100 CACM-2865 -51.59783788236334 2865
 
 
-addressing schemes for resources in networks; resource addressing in network operating systems
+addressing schemes for resources in networks resource addressing in network operating systems
 Rank 1 CACM-1354 -21.5475024470897 1354
 Rank 2 CACM-2178 -20.4669243045949 2178
 Rank 3 CACM-1856 -20.461647479810736 1856
@@ -822,7 +822,7 @@ Rank 99 CACM-3047 -15.381222853499136 3047
 Rank 100 CACM-3057 -15.381222853499136 3057
 
 
-security considerations in local networks, network operating systems, and distributed systems.
+security considerations in local networks network operating systems and distributed systems
 Rank 1 CACM-2581 -17.682948563654772 2581
 Rank 2 CACM-1223 -16.46179426405683 1223
 Rank 3 CACM-1354 -16.310214463704337 1354
@@ -925,7 +925,7 @@ Rank 99 CACM-1421 -10.248705744278798 1421
 Rank 100 CACM-3172 -10.224981944155608 3172
 
 
-parallel languages; languages for parallel computation
+parallel languages languages for parallel computation
 Rank 1 CACM-1846 -21.304552116030763 1846
 Rank 2 CACM-1601 -20.64920715295759 1601
 Rank 3 CACM-2723 -18.332995149605956 2723
@@ -1028,7 +1028,7 @@ Rank 99 CACM-2179 -5.477430990332883 2179
 Rank 100 CACM-224 -5.45699938526927 224
 
 
-setl, very high level languages
+setl very high level languages
 Rank 1 CACM-2699 -14.422999462318716 2699
 Rank 2 CACM-1358 -13.231076006695675 1358
 Rank 3 CACM-1860 -13.095669973649343 1860
@@ -1340,7 +1340,7 @@ Rank 99 CACM-3164 -17.565315257718268 3164
 Rank 100 CACM-3175 -17.54994401715106 3175
 
 
-find all discussions of horizontal microcode optimization with special emphasis on optimization of loops and global optimization.
+find all discussions of horizontal microcode optimization with special emphasis on optimization of loops and global optimization
 Rank 1 CACM-1824 -36.15302299172756 1824
 Rank 2 CACM-3069 -34.01483178851534 3069
 Rank 3 CACM-2851 -33.855290130799276 2851
@@ -1443,7 +1443,7 @@ Rank 99 CACM-3082 -26.35114916036941 3082
 Rank 100 CACM-2390 -26.312121027079282 2390
 
 
-find all descriptions of file handling in operating systems based on multiple processes and message passing.
+find all descriptions of file handling in operating systems based on multiple processes and message passing
 Rank 1 CACM-2833 -31.79544172639354 2833
 Rank 2 CACM-1878 -31.462788962474143 1878
 Rank 3 CACM-3057 -29.95814113690736 3057
@@ -1649,7 +1649,7 @@ Rank 99 CACM-2433 -12.638797398858168 2433
 Rank 100 CACM-2621 -12.612930490911612 2621
 
 
-languages and compilers for parallel processors, especially highly horizontal microcoded machines; code compaction
+languages and compilers for parallel processors especially highly horizontal microcoded machines code compaction
 Rank 1 CACM-1613 -21.9289101802278 1613
 Rank 2 CACM-1854 -20.95333484149708 1854
 Rank 3 CACM-2692 -20.710471638940916 2692
@@ -1936,7 +1936,7 @@ Rank 99 CACM-2738 -5.144536723031406 2738
 Rank 100 CACM-2501 -5.143014446288877 2501
 
 
-computational complexity, intractability, class-complete reductions, algorithms and efficiency
+computational complexity intractability class-complete reductions algorithms and efficiency
 Rank 1 CACM-1781 -5.297659698935073 1781
 Rank 2 CACM-1787 -5.288638503277034 1787
 Rank 3 CACM-1496 -5.266146028178555 1496
@@ -2039,7 +2039,7 @@ Rank 99 CACM-1651 -4.896577738914109 1651
 Rank 100 CACM-1109 -4.894327342680121 1109
 
 
-i am interested in hidden-line and hidden-surface algorithms for cylinders, toroids, spheres, and cones. this is a rather specialized topic in computer graphics.
+i am interested in hidden-line and hidden-surface algorithms for cylinders toroids spheres and cones this is a rather specialized topic in computer graphics
 Rank 1 CACM-2145 -48.222218762549964 2145
 Rank 2 CACM-1421 -47.32123335860041 1421
 Rank 3 CACM-2905 -46.50694044237033 2905
@@ -2557,7 +2557,7 @@ Rank 99 CACM-1960 -4.3240318169417575 1960
 Rank 100 CACM-1496 -4.320369005676905 1496
 
 
-any information on packet radio networks. of particular interest are algorithms for packet routing, and for dealing with changes in network topography. i am not interested in the hardware used in the network.
+any information on packet radio networks of particular interest are algorithms for packet routing and for dealing with changes in network topography i am not interested in the hardware used in the network
 Rank 1 CACM-2289 -74.09244911716796 2289
 Rank 2 CACM-2060 -74.07775070264987 2060
 Rank 3 CACM-2046 -72.65398611752589 2046
@@ -2660,7 +2660,7 @@ Rank 99 CACM-3001 -56.88999749673059 3001
 Rank 100 CACM-1145 -56.873630379776046 1145
 
 
-number-theoretic algorithms, especially involving prime number series, sieves, and chinese remainder theorem.
+number-theoretic algorithms especially involving prime number series sieves and chinese remainder theorem
 Rank 1 CACM-2726 -16.609213897408043 2726
 Rank 2 CACM-2109 -16.194327939780706 2109
 Rank 3 CACM-1386 -16.085094248611178 1386
@@ -2763,7 +2763,7 @@ Rank 99 CACM-3142 -10.113513925868219 3142
 Rank 100 CACM-2709 -10.108974683769404 2709
 
 
-articles on text formatting systems, including "what you see is what you get" systems. examples: t/nroff, scribe, bravo.
+articles on text formatting systems including what you see is what you get systems examples tnroff scribe bravo
 Rank 1 CACM-2341 -29.05598791413323 2341
 Rank 2 CACM-1470 -28.343956949021145 1470
 Rank 3 CACM-2876 -25.47346069235317 2876
@@ -2866,7 +2866,7 @@ Rank 99 CACM-2833 -10.879306270267215 2833
 Rank 100 CACM-2319 -10.871613014104957 2319
 
 
-i'd like to find articles describing the use of singular value decomposition in digital image processing. applications include finding approximations to the original image and restoring images that are subject to noise. an article on the subject is h. andrews and c. patterson "outer product expansions and their uses in digital image processing", american mathematical andrews, h. patterson, c.
+id like to find articles describing the use of singular value decomposition in digital image processing applications include finding approximations to the original image and restoring images that are subject to noise an article on the subject is h andrews and c patterson outer product expansions and their uses in digital image processing american mathematical andrews h patterson c
 Rank 1 CACM-1491 -110.12769914590771 1491
 Rank 2 CACM-2233 -98.09532003281761 2233
 Rank 3 CACM-2750 -97.72696346801773 2750
@@ -2969,7 +2969,7 @@ Rank 99 CACM-1327 -77.91524047997193 1327
 Rank 100 CACM-3001 -77.84974263571695 3001
 
 
-i'd like to find articles describing graph algorithms that are based on the eigenvalue decomposition (or singular value decomposition) of the ajacency matrix for the graph. i'm especially interested in any heuristic algorithms for graph coloring and graph isomorphism using this method.
+id like to find articles describing graph algorithms that are based on the eigenvalue decomposition or singular value decomposition of the ajacency matrix for the graph im especially interested in any heuristic algorithms for graph coloring and graph isomorphism using this method
 Rank 1 CACM-2986 -84.41113407198863 2986
 Rank 2 CACM-2177 -82.60618955142944 2177
 Rank 3 CACM-1456 -78.85813225687316 1456
@@ -3072,7 +3072,7 @@ Rank 99 CACM-1854 -55.23066638518689 1854
 Rank 100 CACM-2147 -55.153501435562106 2147
 
 
-articles about the sensitivity of the eigenvalue decomposition of real matrices, in particular, zero-one matrices. i'm especially interested in the separation of eigenspaces corresponding to distinct eigenvalues. articles on the subject: c. davis and w. kahn, "the rotation of eigenvectors by a permutation:, siam j. numerical analysis, vol. 7, no. 1 (1970); g. stewart, "error bounds for approximate invariant subspaces of closed linear operators", siam j. numerical analysis., vol. 8, no. 4 (1971). davis, c. kahn, w. stewart, g.
+articles about the sensitivity of the eigenvalue decomposition of real matrices in particular zero-one matrices im especially interested in the separation of eigenspaces corresponding to distinct eigenvalues articles on the subject c davis and w kahn the rotation of eigenvectors by a permutation siam j numerical analysis vol 7, no 1 1970); g stewart error bounds for approximate invariant subspaces of closed linear operators siam j numerical analysis vol 8, no 4 1971). davis c kahn w stewart g
 Rank 1 CACM-1946 -132.06054527455527 1946
 Rank 2 CACM-2060 -128.00337963140095 2060
 Rank 3 CACM-2833 -126.28622388909481 2833
@@ -3175,7 +3175,7 @@ Rank 99 CACM-2998 -99.27590105269232 2998
 Rank 100 CACM-2155 -99.21175137285785 2155
 
 
-currently interested in isolation of root of polynomial; there is an old more recent material. heindel, l.
+currently interested in isolation of root of polynomial there is an old more recent material heindel l
 Rank 1 CACM-1844 -39.30999141526894 1844
 Rank 2 CACM-2931 -38.96753889236228 2931
 Rank 3 CACM-1626 -37.51050439203239 1626
@@ -3278,7 +3278,7 @@ Rank 99 CACM-1781 -27.77415362124283 1781
 Rank 100 CACM-3060 -27.73286431745543 3060
 
 
-probabilistic algorithms especially those dealing with algebraic and symbolic manipulation. some examples: rabiin, "probabilistic algorithm on finite field", siam waztch, "probabilistic testing of polynomial identities", siam rabin,m.
+probabilistic algorithms especially those dealing with algebraic and symbolic manipulation some examples rabiin probabilistic algorithm on finite field siam waztch probabilistic testing of polynomial identities siam rabinm
 Rank 1 CACM-321 -32.24317558604632 321
 Rank 2 CACM-2060 -31.76996190906234 2060
 Rank 3 CACM-2155 -31.31102623175002 2155
@@ -3484,7 +3484,7 @@ Rank 99 CACM-2300 -13.621460670525437 2300
 Rank 100 CACM-1669 -13.560243490131915 1669
 
 
-articles describing the relationship between data types and concurrency (e.g. what is the type of a process? when is a synchronization attempt between two processes "type correct"? in a message-passing system is there any notion of the types of messages?--i.e. any way to check that the sender of the message and the receiver are both treating the bit stream as some particular type)
+articles describing the relationship between data types and concurrency eg what is the type of a process when is a synchronization attempt between two processes type correct in a message-passing system is there any notion of the types of messages--ie any way to check that the sender of the message and the receiver are both treating the bit stream as some particular type
 Rank 1 CACM-1626 -163.73749761336222 1626
 Rank 2 CACM-3142 -160.49121567588884 3142
 Rank 3 CACM-2060 -160.28455008963752 2060
@@ -3587,7 +3587,7 @@ Rank 99 CACM-1788 -117.05475208792045 1788
 Rank 100 CACM-1486 -117.02548283571528 1486
 
 
-what is the type of a module? (i don't want the entire literature on abstract data types here, but i'm not sure how to phrase this to avoid it. i'm interested in questions about how one can check that a module "matches" contexts in which it is used.)
+what is the type of a module i dont want the entire literature on abstract data types here but im not sure how to phrase this to avoid it im interested in questions about how one can check that a module matches contexts in which it is used
 Rank 1 CACM-2931 -108.14436456001097 2931
 Rank 2 CACM-2060 -105.4025319196805 2060
 Rank 3 CACM-1491 -105.33277219211303 1491
@@ -3690,7 +3690,7 @@ Rank 99 CACM-2966 -82.57597858830974 2966
 Rank 100 CACM-2456 -82.38018341234906 2456
 
 
-what does type compatibility mean in languages that allow programmer defined types? (you might want to restrict this to "extensible" languages that allow definition of abstract data types or programmer-supplied definitions of operators like *, +.)
+what does type compatibility mean in languages that allow programmer defined types you might want to restrict this to extensible languages that allow definition of abstract data types or programmer-supplied definitions of operators like  
 Rank 1 CACM-2931 -64.8681579472638 2931
 Rank 2 CACM-1626 -59.87165986773813 1626
 Rank 3 CACM-2851 -59.14969447480753 2851
@@ -3793,7 +3793,7 @@ Rank 99 CACM-1877 -43.95210483491914 1877
 Rank 100 CACM-2912 -43.93980702877397 2912
 
 
-list all articles dealing with data types in the following languages: that are referenced frequently in papers on the above languages (e.g. catch any languages with interesting type structures that i might have missed).
+list all articles dealing with data types in the following languages that are referenced frequently in papers on the above languages eg catch any languages with interesting type structures that i might have missed
 Rank 1 CACM-2060 -80.0000661252491 2060
 Rank 2 CACM-1626 -73.54663697883086 1626
 Rank 3 CACM-2002 -70.79667122676362 2002
@@ -3896,7 +3896,7 @@ Rank 99 CACM-2542 -48.56628112081236 2542
 Rank 100 CACM-1155 -48.52366654413515 1155
 
 
-theory of distributed systems and databases. subtopics of special interest include reliability and fault-tolerance in distributed systems, atomicity, distributed transactions, synchronization algorithms, resource allocation; lower bounds and models for asynchronous parallel systems. also theory of communicating processes and protocols. p. box 2158 yale station, new haven, conn. 06520
+theory of distributed systems and databases subtopics of special interest include reliability and fault-tolerance in distributed systems atomicity distributed transactions synchronization algorithms resource allocation lower bounds and models for asynchronous parallel systems also theory of communicating processes and protocols p box 2158 yale station new haven conn 06520
 Rank 1 CACM-1323 -60.38444414939583 1323
 Rank 2 CACM-2838 -59.5028939081099 2838
 Rank 3 CACM-2196 -59.33374880561725 2196
@@ -3999,7 +3999,7 @@ Rank 99 CACM-2850 -46.95543086574834 2850
 Rank 100 CACM-2991 -46.91623806103654 2991
 
 
-computer performance evaluation techniques using pattern recognition and clustering. la 70803
+computer performance evaluation techniques using pattern recognition and clustering la 70803
 Rank 1 CACM-2145 -14.25469820525316 2145
 Rank 2 CACM-2339 -11.148752479522228 2339
 Rank 3 CACM-2556 -10.590768449958198 2556
@@ -4102,7 +4102,7 @@ Rank 99 CACM-2687 -5.084151142968744 2687
 Rank 100 CACM-106 -5.083602741195218 106
 
 
-analysis and perception of shape by humans and computers. shape descriptions, shape recognition by computer. two-dimensional shapes. measures of circularity. shape matching.
+analysis and perception of shape by humans and computers shape descriptions shape recognition by computer two-dimensional shapes measures of circularity shape matching
 Rank 1 CACM-2692 -52.43920673884425 2692
 Rank 2 CACM-2828 -51.04068830095226 2828
 Rank 3 CACM-3098 -48.6866863528997 3098
@@ -4205,7 +4205,7 @@ Rank 99 CACM-1878 -28.212092085366546 1878
 Rank 100 CACM-2740 -28.210516212594776 2740
 
 
-texture analysis by computer. digitized texture analysis. texture synthesis. perception of texture.
+texture analysis by computer digitized texture analysis texture synthesis perception of texture
 Rank 1 CACM-1681 -14.95936103411552 1681
 Rank 2 CACM-2145 -14.651122356448619 2145
 Rank 3 CACM-2339 -14.11791064275885 2339
@@ -4308,7 +4308,7 @@ Rank 99 CACM-1234 -9.536376813622553 1234
 Rank 100 CACM-1502 -9.533104785300466 1502
 
 
-the use of operations research models to optimize information system performance. this includes fine tuning decisions such as secondary index selection, file reorganization, and distributed databases.
+the use of operations research models to optimize information system performance this includes fine tuning decisions such as secondary index selection file reorganization and distributed databases
 Rank 1 CACM-2359 -42.432360903533834 2359
 Rank 2 CACM-2631 -41.92048945988681 2631
 Rank 3 CACM-2046 -40.6261567645834 2046
@@ -4411,7 +4411,7 @@ Rank 99 CACM-3157 -29.899951372866877 3157
 Rank 100 CACM-2344 -29.83724727980399 2344
 
 
-the application of fuzzy subset theory to clustering and information retrieval problems. this includes performance evaluation and automatic indexing considerations.
+the application of fuzzy subset theory to clustering and information retrieval problems this includes performance evaluation and automatic indexing considerations
 Rank 1 CACM-254 -28.940836266992378 254
 Rank 2 CACM-2179 -28.638456575762863 2179
 Rank 3 CACM-1602 -28.49518689144608 1602
@@ -4514,7 +4514,7 @@ Rank 99 CACM-1393 -22.144255951154157 1393
 Rank 100 CACM-3096 -22.142336218201596 3096
 
 
-the use of bayesian decision models to optimize information retrieval system performance. this includes stopping rules to determine when a user should cease scanning the output of a retrieval search.
+the use of bayesian decision models to optimize information retrieval system performance this includes stopping rules to determine when a user should cease scanning the output of a retrieval search
 Rank 1 CACM-2046 -55.350230003408655 2046
 Rank 2 CACM-1747 -52.57601621723615 1747
 Rank 3 CACM-1699 -52.16550564193506 1699
@@ -4617,7 +4617,7 @@ Rank 99 CACM-2105 -42.196304863564784 2105
 Rank 100 CACM-2485 -42.130419347513865 2485
 
 
-the use of computer science principles (e.g. data structures, numerical methods) in generating optimization (e.g. linear programming) algorithms. this includes issues of the khachian (russian, ellipsoidal) algorithm and complexity of such algorithms.
+the use of computer science principles eg data structures numerical methods in generating optimization eg linear programming algorithms this includes issues of the khachian russian ellipsoidal algorithm and complexity of such algorithms
 Rank 1 CACM-1626 -49.440595800574286 1626
 Rank 2 CACM-2833 -48.16964613308959 2833
 Rank 3 CACM-3106 -46.4716228991433 3106
@@ -4720,7 +4720,7 @@ Rank 99 CACM-1609 -37.70870899595267 1609
 Rank 100 CACM-1491 -37.69758518607438 1491
 
 
-the role of information retrieval in knowledge based systems (i.e., expert systems).
+the role of information retrieval in knowledge based systems ie expert systems
 Rank 1 CACM-1945 -19.96860095301013 1945
 Rank 2 CACM-1788 -18.97337816928483 1788
 Rank 3 CACM-1542 -17.503564802573226 1542
@@ -5029,7 +5029,7 @@ Rank 99 CACM-2421 -5.063255303882271 2421
 Rank 100 CACM-3054 -5.057542849126474 3054
 
 
-modelling and simulation in agricultural ecosystems.
+modelling and simulation in agricultural ecosystems
 Rank 1 CACM-1781 -10.724702829615293 1781
 Rank 2 CACM-1787 -10.606732056378993 1787
 Rank 3 CACM-1496 -10.53844947958936 1496
@@ -5132,7 +5132,7 @@ Rank 99 CACM-1728 -9.657640287615205 1728
 Rank 100 CACM-1487 -9.655779924632736 1487
 
 
-mathematical induction, group theory, integers modulo m, probability, binomial coefficients, binomial theorem, homomorphism, morphism, transitivity, relations, relation matrix. syracuse university, 313 link hall, syracuse, n. 13210
+mathematical induction group theory integers modulo m probability binomial coefficients binomial theorem homomorphism morphism transitivity relations relation matrix syracuse university 313 link hall syracuse n 13210
 Rank 1 CACM-2986 -17.007219014806175 2986
 Rank 2 CACM-2697 -16.583060603418527 2697
 Rank 3 CACM-2177 -15.233685289413678 2177
@@ -5235,7 +5235,7 @@ Rank 99 CACM-767 -8.164453692727632 767
 Rank 100 CACM-2695 -8.15748109612683 2695
 
 
-semantics of programming languages, including abstract specifications of data types, denotational semantics, and proofs of correctness. hoare, a. dijkstra, e. university of massachusetts, amherst, ma 01003
+semantics of programming languages including abstract specifications of data types denotational semantics and proofs of correctness hoare a dijkstra e university of massachusetts amherst ma 01003
 Rank 1 CACM-1749 -45.49475565056324 1749
 Rank 2 CACM-3039 -40.69868653833137 3039
 Rank 3 CACM-2342 -40.0162968360472 2342
@@ -5338,7 +5338,7 @@ Rank 99 CACM-1463 -31.23188789668537 1463
 Rank 100 CACM-2657 -31.16460527556779 2657
 
 
-anything dealing with star height of regular languages or regular expressions or regular events.
+anything dealing with star height of regular languages or regular expressions or regular events
 Rank 1 CACM-2838 -39.95122179685173 2838
 Rank 2 CACM-1665 -37.87658426169571 1665
 Rank 3 CACM-2112 -31.580295080013773 2112
@@ -5441,7 +5441,7 @@ Rank 99 CACM-2918 -19.635916309836364 2918
 Rank 100 CACM-1593 -19.63146055515127 1593
 
 
-articles relation the algebraic theory of semigroups and monoids to the study of automata and regular languages.
+articles relation the algebraic theory of semigroups and monoids to the study of automata and regular languages
 Rank 1 CACM-2650 -39.30215244971513 2650
 Rank 2 CACM-2112 -38.683507353679964 2112
 Rank 3 CACM-1665 -37.84984086837646 1665
@@ -5544,7 +5544,7 @@ Rank 99 CACM-2095 -29.95709232740446 2095
 Rank 100 CACM-3067 -29.95184190156014 3067
 
 
-abstracts of articles: j. backus, "can programming be liberated from the von neumann style? a functional style and its algebra of programs", cacm 21 re millo, r. lipton, a. perlis, letter to acm forum, cacm 22 (1979), 629-630 backus, j. de millo, r. lipton, r. perlis, a.
+abstracts of articles j backus can programming be liberated from the von neumann style a functional style and its algebra of programs cacm 21 re millo r lipton a perlis letter to acm forum cacm 22 1979), 629-630 backus j de millo r lipton r perlis a
 Rank 1 CACM-3077 -103.32655603448045 3077
 Rank 2 CACM-1705 -99.26671696902542 1705
 Rank 3 CACM-1691 -94.40382939963878 1691
@@ -5647,7 +5647,7 @@ Rank 99 CACM-3149 -72.82788829386868 3149
 Rank 100 CACM-2645 -72.82217240825214 2645
 
 
-algorithms or statistical packages for anova, regression using least squares or generalized linear models. system design, capabilities, statistical formula are of interest. student's t test, wilcoxon and sign tests, multivariate and univariate components can be included.
+algorithms or statistical packages for anova regression using least squares or generalized linear models system design capabilities statistical formula are of interest students t test wilcoxon and sign tests multivariate and univariate components can be included
 Rank 1 CACM-2534 -58.08594385846409 2534
 Rank 2 CACM-2971 -55.074965022366634 2971
 Rank 3 CACM-1844 -54.520864824607166 1844
@@ -5750,7 +5750,7 @@ Rank 99 CACM-2665 -41.27757382829368 2665
 Rank 100 CACM-2229 -41.07725739932327 2229
 
 
-dictionary construction and accessing methods for fast retrieval of words or lexical items or morphologically related information. hashing or indexing methods are usually applied to english spelling or natural language problems.
+dictionary construction and accessing methods for fast retrieval of words or lexical items or morphologically related information hashing or indexing methods are usually applied to english spelling or natural language problems
 Rank 1 CACM-2534 -49.09822022205004 2534
 Rank 2 CACM-1665 -47.41798084100938 1665
 Rank 3 CACM-2127 -47.110791119078186 2127
@@ -5853,7 +5853,7 @@ Rank 99 CACM-2112 -39.45617724421318 2112
 Rank 100 CACM-3008 -39.326814926528485 3008
 
 
-hardware and software relating to database management systems. database packages, back end computers, special associative hardware with microcomputers attached to disk heads or things like rap, relational or network (codasyl) or hierarchical models, systems like system r, ims, adabas, total, etc.
+hardware and software relating to database management systems database packages back end computers special associative hardware with microcomputers attached to disk heads or things like rap relational or network codasyl or hierarchical models systems like system r ims adabas total etc
 Rank 1 CACM-3202 -59.1561406869354 3202
 Rank 2 CACM-1844 -55.88255392359179 1844
 Rank 3 CACM-2919 -53.13264955423767 2919
@@ -5956,7 +5956,7 @@ Rank 99 CACM-1786 -39.071052376905385 1786
 Rank 100 CACM-1749 -39.02955287945474 1749
 
 
-information retrieval articles by gerard salton or others about clustering, bibliographic coupling, use of citations or co-citations, the vector space model, boolean search methods using inverted files, feedback, etc. salton, g.
+information retrieval articles by gerard salton or others about clustering bibliographic coupling use of citations or co-citations the vector space model boolean search methods using inverted files feedback etc salton g
 Rank 1 CACM-2711 -52.15933719680878 2711
 Rank 2 CACM-2451 -45.552042765825945 2451
 Rank 3 CACM-2833 -38.6798335082167 2833
@@ -6059,7 +6059,7 @@ Rank 99 CACM-2179 -26.79714917111487 2179
 Rank 100 CACM-2060 -26.577609004377234 2060
 
 
-results relating parallel complexity theory (both for pram's and uniform circuits).
+results relating parallel complexity theory both for prams and uniform circuits
 Rank 1 CACM-2515 -20.43812541987173 2515
 Rank 2 CACM-2342 -20.230115501057494 2342
 Rank 3 CACM-1603 -19.876673611626654 1603
@@ -6162,7 +6162,7 @@ Rank 99 CACM-2114 -14.340541624636312 2114
 Rank 100 CACM-1747 -14.32263227083585 1747
 
 
-algorithms for parallel computation, and especially comparisons between parallel and sequential algorithms.
+algorithms for parallel computation and especially comparisons between parallel and sequential algorithms
 Rank 1 CACM-2060 -33.278434211766054 2060
 Rank 2 CACM-1471 -32.738582866363174 1471
 Rank 3 CACM-1601 -30.842009810367735 1601
@@ -6265,7 +6265,7 @@ Rank 99 CACM-2344 -19.42996363111405 2344
 Rank 100 CACM-2560 -19.337672471338216 2560
 
 
-list all articles on el1 and ecl (el1 may be given as el/1; i don't remember how they did it.
+list all articles on el1 and ecl el1 may be given as el1; i dont remember how they did it
 Rank 1 CACM-2060 -47.62964598689026 2060
 Rank 2 CACM-2002 -42.29701803951364 2002
 Rank 3 CACM-2232 -41.60471933030514 2232
