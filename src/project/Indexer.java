@@ -39,7 +39,7 @@ public class Indexer {
 	private static Map<String, Integer> docValueMap = new HashMap<String, Integer>();
 
 	public static void main(String[] args) {
-		Tokenizer.tokenize("case_folding");
+		Tokenizer.tokenize("both");
 		positionalIndex(1);
 		try {
 			PrintWriter writer = new PrintWriter("unigram_index.txt", "UTF-8");

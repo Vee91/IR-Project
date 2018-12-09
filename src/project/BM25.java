@@ -16,6 +16,7 @@ import org.mapdb.BTreeMap;
 
 public class BM25 {
 
+	
 	private static Map<String, List<DTF>> ii = new TreeMap<String, List<DTF>>();
 	private static Map<Integer, String> docIdMap = new HashMap<Integer, String>();
 	private static Map<Integer, Integer> termCount = new HashMap<Integer, Integer>();
@@ -36,9 +37,9 @@ public class BM25 {
 			PrintWriter writer = new PrintWriter("BM25.txt", "UTF-8");
 			queries.stream().forEach(query -> {
 				List<Ranks> ranks = evaluateQuery(query);
-				writer.println(query.getQuery());
 				for (Ranks r : ranks) {
-					writer.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()) + " " + r.getScore() + " " + r.getDocId());
+					writer.println(query.getQueryId() + " Q0 " + docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+							+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
 				}
 				writer.println("\n");
 				query.setOutput(ranks);

@@ -23,6 +23,7 @@ public class QLM {
 
 	public static void runJMQLM(List<Query> queries, Map<String, List<DTF>> ii1, Map<Integer, String> docIdMap1,
 			Map<Integer, Integer> termCount1, Map<Integer, Set<Integer>> relevantinfo) {
+		System.out.println("Running QLM");
 		for(Entry<String, List<DTF>> e : ii1.entrySet()) {
 			ii.put(e.getKey(), e.getValue());
 		}
@@ -36,10 +37,9 @@ public class QLM {
 			PrintWriter writer = new PrintWriter("QLM.txt", "UTF-8");
 			queries.stream().forEach(query -> {
 				List<Ranks> ranks = runJMQLM(query, relevantinfo);
-				writer.println(query.getQuery());
 				for (Ranks r : ranks) {
-					writer.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()) + " " + r.getScore() + " "
-							+ r.getDocId());
+					writer.println(query.getQueryId() + " Q0 " + docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+							+ " " + r.getRank() + " " + r.getScore() + " Smoothed_Query_Likelihood_Model");
 				}
 				writer.println("\n");
 				query.setOutput(ranks);
@@ -57,7 +57,6 @@ public class QLM {
 		Map<Integer, Double> accumulator = new HashMap<Integer, Double>();
 		int cLength = getCollectionLength();
 		List<Ranks> ranks = new ArrayList<>();
-		System.out.println("Running QLM");
 		for (String qt : queryTerms) {
 			try {
 				List<DTF> dtf = ii.get(qt);

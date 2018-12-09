@@ -89,8 +89,8 @@ public class StemmedIndexer {
 	private static void index(List<String> terms) {
 		// calculate inverted index
 		int docId = Integer.valueOf(terms.get(0));
-		docIdMap.put(docId, "CACM-" + terms.get(0));
-		docValueMap.put("CACM-" + terms.get(0), docId);
+		docIdMap.put(docId, "CACM-" + terms.get(0) + ".html");
+		docValueMap.put("CACM-" + terms.get(0) + ".html", docId);
 		termCount.put(docId, terms.size() - 1);
 		regularInvertedIndex(terms, docId);
 	}
