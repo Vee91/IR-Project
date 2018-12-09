@@ -33,9 +33,9 @@ public class TfIdf {
 			PrintWriter writer = new PrintWriter("TFIDF.txt", "UTF-8");
 			queries.stream().forEach(query -> {
 				List<Ranks> ranks = runTfIdf(query);
-				writer.println(query.getQuery());
 				for (Ranks r : ranks) {
-					writer.println("Rank " + r.getRank() + " " + docIdMap.get(r.getDocId()) + " " + r.getScore() + " " + r.getDocId());
+					writer.println(query.getQueryId() + " Q0 " + docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+							+ " " + r.getRank() + " " + r.getScore() + " TFIDF_Model");
 				}
 				writer.println("\n");
 				query.setOutput(ranks);

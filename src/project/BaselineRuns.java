@@ -22,10 +22,9 @@ public class BaselineRuns {
 
 	public static void main(String[] args) {
 		DB db = null;
-		if (args[0].equals("base")) {
+		if (args[0].equals("base") || args[0].equals("stop")) {
 			db = DBMaker.fileDB(".unigram_positional").make();
-		}
-		else if(args[0].equals("stem")) {
+		} else if (args[0].equals("stem")) {
 			db = DBMaker.fileDB(".unigram_stemmed").make();
 		}
 		BTreeMap<String, List<DTF>> ii = db.treeMap("invertedIndex").valuesOutsideNodesEnable()
@@ -40,13 +39,20 @@ public class BaselineRuns {
 				.keySerializer(new SerializerCompressionWrapper(Serializer.INTEGER))
 				.valueSerializer(new SerializerCompressionWrapper(Serializer.INTEGER)).createOrOpen();
 		try {
-			List<Query> queries = loadQueries();
-			BM25.runBM25(queries, ii, docIdMap, termCount);
-			//BM25.runBM25(StopListRun.generateStopListQueries(loadQueries()), ii,
-			// docIdMap, termCount);
-			//TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
-			//QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
-			//Lucene.runLucene(queries);
+			if (args[0].equals("stop")) {
+				List<Query> stopQueries = StopListRun.generateStopListQueries(loadQueries());
+				BM25.runBM25(stopQueries, ii, docIdMap, termCount);
+				TfIdf.runTfIdf(stopQueries, ii, docIdMap, termCount);
+				QLM.runJMQLM(stopQueries, ii, docIdMap, termCount, null);
+			} else {
+				List<Query> queries = loadQueries();
+				BM25.runBM25(queries, ii, docIdMap, termCount);
+				TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
+				QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
+				if (args[0].equals("base")) {
+					Lucene.runLucene(queries);
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -54,7 +60,8 @@ public class BaselineRuns {
 
 	private static List<Query> loadQueries() throws IOException {
 		List<Query> queries = new ArrayList();
-		String pattern = "([a-zA-Z]+|\\s+)([\\p{Punct}]+)([a-zA-Z]*)";
+		String endingPattern = "([a-zA-Z]+|\\s+)([\\p{Punct}&&[^-]]+)([a-zA-Z]*)";
+		String startingPattern = "([a-zA-Z]*|\\s*)([\\p{Punct}&&[^-]]+)([a-zA-Z]+)";
 		FileHandler f = new FileHandler("docs/queries/cacm.query.txt", false);
 		StringBuilder fileContent = new StringBuilder();
 		String currentLine = null;
@@ -72,13 +79,16 @@ public class BaselineRuns {
 
 			// punctuation removal
 			String queryText = queryTextNode.toString().toLowerCase().trim();
-			while (!queryText.equals(queryText.replaceAll(pattern, "$1$3"))) {
-				queryText = queryText.replaceAll(pattern, "$1$3");
+			while (!queryText.equals(queryText.replaceAll(endingPattern, "$1$3"))) {
+				queryText = queryText.replaceAll(endingPattern, "$1$3");
+			}
+			while (!queryText.equals(queryText.replaceAll(startingPattern, "$1$3"))) {
+				queryText = queryText.replaceAll(startingPattern, "$1$3");
 			}
 
 			Query q = new Query();
 			q.setQueryId(Integer.valueOf(queryNo.toString().trim()));
-			q.setQuery(queryTextNode.toString().toLowerCase().trim());
+			q.setQuery(queryText);
 			q.setRelevantDocs(null);
 			queries.add(q);
 		}
