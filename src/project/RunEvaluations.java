@@ -1,10 +1,12 @@
 package project;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RunEvaluations {
     static Map<Integer,List<String>> reldocs;
@@ -51,12 +53,12 @@ public class RunEvaluations {
                 fetchedDocs.put(Integer.parseInt(lineContens[0]),temp);
             }
         }
-        Iterator<Map.Entry<Integer, List<String>>> it=fetchedDocs.entrySet().iterator();
-        while (it.hasNext())
-        {
-            Map.Entry<Integer, List<String>> item=it.next();
-            if(item.getValue()==null)
-                it.remove();
+        for (Map.Entry<Integer,List<String>> me:
+             fetchedDocs.entrySet()) {
+            if(me.getValue()==null)
+            {
+                fetchedDocs.remove(me.getKey());
+            }
         }
     }
 

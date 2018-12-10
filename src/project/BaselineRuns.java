@@ -21,7 +21,7 @@ public class BaselineRuns {
 
 	public static void main(String[] args) {
 		DB db = null;
-		if (args[0].equals("base") || args[0].equals("stop")) {
+		if (args[0].equals("base") || args[0].equals("stop") || args[0].equals("prf") ) {
 			db = DBMaker.fileDB(".unigram_positional").make();
 		} else if (args[0].equals("stem")) {
 			db = DBMaker.fileDB(".unigram_stemmed").make();
@@ -166,7 +166,7 @@ public class BaselineRuns {
 			} else if (args[0].equals("prf")) {
 				List<Query> queries = loadQueries();
 				BM25.runBM25(queries, ii, docIdMap, termCount, true);
-				PrintWriter writer = new PrintWriter("BM25.txt", "UTF-8");
+				PrintWriter writer = new PrintWriter("BM25_enriched.txt", "UTF-8");
 				for (Query query : queries) {
 					List<Ranks> ranks = query.getOutput();
 					for (Ranks r : ranks) {
