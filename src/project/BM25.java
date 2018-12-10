@@ -34,16 +34,16 @@ public class BM25 {
 			List<Ranks> ranks = evaluateQuery(query);
 			query.setOutput(ranks);
 		});
-		if (runPseudo)
-		{
-			PseudoRelevanceFeedback prf=new PseudoRelevanceFeedback();
-			prf.runPsuedoRelevance(queries,docIdMap);
+		if (runPseudo) {
+			PseudoRelevanceFeedback prf = new PseudoRelevanceFeedback();
+			prf.runPsuedoRelevance(queries, docIdMap);
 			PrintWriter writer2 = new PrintWriter("BM25PRF.txt", "UTF-8");
 			queries.stream().forEach(query -> {
 				List<Ranks> ranks = evaluateQuery(query);
 				for (Ranks r : ranks) {
-					writer2.println(query.getQueryId() + " Q0 " + docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
-							+ " " + r.getRank() + " " + r.getScore() + " BM25_ModelPRF");
+					writer2.println(query.getQueryId() + " Q0 "
+							+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5) + " "
+							+ r.getRank() + " " + r.getScore() + " BM25_ModelPRF");
 				}
 				writer2.println("\n");
 				query.setOutput(ranks);

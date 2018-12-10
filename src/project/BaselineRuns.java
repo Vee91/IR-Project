@@ -166,17 +166,6 @@ public class BaselineRuns {
 			} else if (args[0].equals("prf")) {
 				List<Query> queries = loadQueries();
 				BM25.runBM25(queries, ii, docIdMap, termCount, true);
-				PrintWriter writer = new PrintWriter("BM25_enriched.txt", "UTF-8");
-				for (Query query : queries) {
-					List<Ranks> ranks = query.getOutput();
-					for (Ranks r : ranks) {
-						writer.println(query.getQueryId() + " Q0 "
-								+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5) + " "
-								+ r.getRank() + " " + r.getScore() + " BM25_Model");
-					}
-					writer.println("\n");
-				}
-				writer.close();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
