@@ -141,7 +141,7 @@ public class Lucene {
 	public static void runLucene(List<project.Query> queries) throws IOException {
 
 		String indexLocation = null;
-		String s = "C:\\IR\\Workspace\\Project\\lucene_index";
+		String s = "lucene_index/";
 
 		Lucene indexer = null;
 		try {
@@ -156,7 +156,7 @@ public class Lucene {
 		// read input from user until he enters q for quit
 		// ===================================================
 		try {
-			s = "C:\\IR\\Workspace\\Project\\corpus";
+			s = "corpus/";
 
 			// try to add file into the index
 			indexer.indexFileOrDirectory(s);
@@ -184,7 +184,6 @@ public class Lucene {
 				IndexSearcher searcher = new IndexSearcher(reader);
 				TopScoreDocCollector collector = TopScoreDocCollector.create(100);
 				s = qu.getQuery();
-				writer.println(s);
 				if(s.startsWith("Articles on text formatting systems")) {
 					System.out.println("here");
 				}
@@ -194,11 +193,11 @@ public class Lucene {
 
 				// 4. display results
 				
-				writer.println("Found " + hits.length + " hits.");
 				for (int i = 0; i < hits.length; ++i) {
 					int docId = hits[i].doc;
 					Document d = searcher.doc(docId);
-					writer.println((i + 1) + ". " + d.get("filename") + " " + hits[i].score);
+					writer.println(qu.getQueryId() + " Q0 " + d.get("filename").substring(0, d.get("filename").length() - 5)
+							+ " " + i + 1 + " " + hits[i].score + " Lucene_Model");
 				}
 				// 5. term stats --> watch out for which "version" of the term
 				// must be checked here instead!

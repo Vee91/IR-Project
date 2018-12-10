@@ -1,4 +1,5 @@
 package project;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -24,31 +25,19 @@ public class QLM {
 	public static void runJMQLM(List<Query> queries, Map<String, List<DTF>> ii1, Map<Integer, String> docIdMap1,
 			Map<Integer, Integer> termCount1, Map<Integer, Set<Integer>> relevantinfo) {
 		System.out.println("Running QLM");
-		for(Entry<String, List<DTF>> e : ii1.entrySet()) {
+		for (Entry<String, List<DTF>> e : ii1.entrySet()) {
 			ii.put(e.getKey(), e.getValue());
 		}
-		for(Entry<Integer, String> e : docIdMap1.entrySet()) {
+		for (Entry<Integer, String> e : docIdMap1.entrySet()) {
 			docIdMap.put(e.getKey(), e.getValue());
 		}
-		for(Entry<Integer, Integer> e: termCount1.entrySet()) {
+		for (Entry<Integer, Integer> e : termCount1.entrySet()) {
 			termCount.put(e.getKey(), e.getValue());
 		}
-		try {
-			PrintWriter writer = new PrintWriter("QLM.txt", "UTF-8");
-			queries.stream().forEach(query -> {
-				List<Ranks> ranks = runJMQLM(query, relevantinfo);
-				for (Ranks r : ranks) {
-					writer.println(query.getQueryId() + " Q0 " + docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
-							+ " " + r.getRank() + " " + r.getScore() + " Smoothed_Query_Likelihood_Model");
-				}
-				writer.println("\n");
-				query.setOutput(ranks);
-			});
-			writer.close();
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		queries.stream().forEach(query -> {
+			List<Ranks> ranks = runJMQLM(query, relevantinfo);
+			query.setOutput(ranks);
+		});
 	}
 
 	private static List<Ranks> runJMQLM(Query query, Map<Integer, Set<Integer>> relevantinfo) {

@@ -12,7 +12,8 @@ public class Tokenizer {
 
 	public static void tokenize(String i) {
 		File[] files = new File("docs/raw/").listFiles();
-		String pattern = "([a-zA-Z]+|\\s+)([\\p{Punct}]+)([a-zA-Z]*)";
+		String endingPattern = "([a-zA-Z]+|\\s+)([\\p{Punct}&&[^-]]+)([a-zA-Z]*)";
+		String startingPattern = "([a-zA-Z]*|\\s*)([\\p{Punct}&&[^-]]+)([a-zA-Z]+)";
 		String bib = "([0-9]+\\s+)([0-9]+\\s+)([0-9]+)"; // remove numbers at the bottom
 		int count = 0;
 		for (File f : files) {
@@ -24,8 +25,11 @@ public class Tokenizer {
 					// default. Do both casefolding and punctuation handling
 					if (i.equals("both")) {
 						str = doc.text().toLowerCase();
-						while (!str.equals(str.replaceAll(pattern, "$1$3"))) {
-							str = str.replaceAll(pattern, "$1$3");
+						while (!str.equals(str.replaceAll(endingPattern, "$1$3"))) {
+							str = str.replaceAll(endingPattern, "$1$3");
+						}
+						while (!str.equals(str.replaceAll(startingPattern, "$1$3"))) {
+							str = str.replaceAll(startingPattern, "$1$3");
 						}
 						str = str.replaceAll(bib, "");
 					}
@@ -34,8 +38,8 @@ public class Tokenizer {
 						str = doc.text().toLowerCase();
 						str = str.replaceAll(bib, "");
 					} else if (i.equals("punct")) {
-						while (!str.equals(str.replaceAll(pattern, "$1$3"))) {
-							str = str.replaceAll(pattern, "$1$3");
+						while (!str.equals(str.replaceAll(endingPattern, "$1$3"))) {
+							str = str.replaceAll(endingPattern, "$1$3");
 						}
 						str = str.replaceAll(bib, "");
 					}
