@@ -49,7 +49,7 @@ public class PseudoRelevanceFeedback {
                     it.remove();
             }
             wordCount = sortByValues(wordCount);
-            wordCount.entrySet().stream().limit(5).forEach(x->q.setQuery(q.getQuery()+" "+x));
+            wordCount.entrySet().stream().limit(5).forEach(x->q.setQuery(q.getQuery()+" "+x.getKey()));
         }
     }
     private static HashMap sortByValues(Map map) {

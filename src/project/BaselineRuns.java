@@ -41,12 +41,12 @@ public class BaselineRuns {
 		try {
 			if (args[0].equals("stop")) {
 				List<Query> stopQueries = StopListRun.generateStopListQueries(loadQueries());
-				BM25.runBM25(stopQueries, ii, docIdMap, termCount);
+				BM25.runBM25(stopQueries, ii, docIdMap, termCount,false);
 				TfIdf.runTfIdf(stopQueries, ii, docIdMap, termCount);
 				QLM.runJMQLM(stopQueries, ii, docIdMap, termCount, null);
 			} else {
 				List<Query> queries = loadQueries();
-				BM25.runBM25(queries, ii, docIdMap, termCount);
+				BM25.runBM25(queries, ii, docIdMap, termCount,true);
 				TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
 				QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
 				if (args[0].equals("base")) {

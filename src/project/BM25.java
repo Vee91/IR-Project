@@ -23,7 +23,7 @@ public class BM25 {
 	private static Map<Integer, Integer> termCount = new HashMap<Integer, Integer>();
 
 	public static void runBM25(List<Query> queries, Map<String, List<DTF>> ii1,
-			Map<Integer, String> docIdMap1, Map<Integer, Integer> termCount1) throws IOException {
+			Map<Integer, String> docIdMap1, Map<Integer, Integer> termCount1,boolean runPseudo) throws IOException {
 		for(Entry<String, List<DTF>> e : ii1.entrySet()) {
 			ii.put(e.getKey(), e.getValue());
 		}
@@ -46,8 +46,21 @@ public class BM25 {
 				query.setOutput(ranks);
 			});
 			writer.close();
-			PseudoRelevanceFeedback prf=new PseudoRelevanceFeedback();
-			prf.runPsuedoRelevance(queries,docIdMap);
+			if (runPseudo)
+			{
+				PseudoRelevanceFeedback prf=new PseudoRelevanceFeedback();
+				prf.runPsuedoRelevance(queries,docIdMap);
+				PrintWriter writer2 = new PrintWriter("BM25PRF.txt", "UTF-8");
+				queries.stream().forEach(query -> {
+					List<Ranks> ranks = evaluateQuery(query);
+					for (Ranks r : ranks) {
+						writer2.println(query.getQueryId() + " Q0 " + docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+								+ " " + r.getRank() + " " + r.getScore() + " BM25_ModelPRF");
+					}
+					writer2.println("\n");
+					query.setOutput(ranks);
+				});
+			}
 
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
