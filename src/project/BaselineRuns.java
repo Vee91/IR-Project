@@ -59,7 +59,7 @@ public class BaselineRuns {
 					for (Ranks r : ranks) {
 						writer.println(query.getQueryId() + " Q0 "
 								+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5) + " "
-								+ r.getRank() + " " + r.getScore() + " BM25_Model");
+								+ r.getRank() + " " + r.getScore() + " tfidf_Model");
 					}
 					writer.println("\n");
 				}
@@ -71,16 +71,18 @@ public class BaselineRuns {
 					for (Ranks r : ranks) {
 						writer.println(query.getQueryId() + " Q0 "
 								+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5) + " "
-								+ r.getRank() + " " + r.getScore() + " BM25_Model");
+								+ r.getRank() + " " + r.getScore() + " QLM_Model");
 					}
 					writer.println("\n");
 				}
 				writer.close();
 			} else if (args[0].equals("base") || args[0].equals("stem")) {
-				List<Query> queries = loadQueries();
+				List<Query> queries = null;
 				PrintWriter writer = null;
-				BM25.runBM25(queries, ii, docIdMap, termCount, false);
+				
 				if (args[0].equals("base")) {
+					queries = loadQueries();
+					BM25.runBM25(queries, ii, docIdMap, termCount, false);
 					writer = new PrintWriter("BM25.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
@@ -94,6 +96,7 @@ public class BaselineRuns {
 					writer.close();
 				} else {
 					queries = loadStemQueries();
+					BM25.runBM25(queries, ii, docIdMap, termCount, false);
 					writer = new PrintWriter("BM25_stem.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
@@ -107,56 +110,60 @@ public class BaselineRuns {
 					writer.close();
 				}
 
-				TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
 				if (args[0].equals("base")) {
+					queries = loadQueries();
+					TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
 					writer = new PrintWriter("tfidf.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
 						for (Ranks r : ranks) {
 							writer.println(query.getQueryId() + " Q0 "
 									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
-									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+									+ " " + r.getRank() + " " + r.getScore() + " tfidf_Model");
 						}
 						writer.println("\n");
 					}
 					writer.close();
 				} else {
 					queries = loadStemQueries();
+					TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
 					writer = new PrintWriter("tfidf_stem.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
 						for (Ranks r : ranks) {
 							writer.println(query.getQueryId() + " Q0 "
 									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
-									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+									+ " " + r.getRank() + " " + r.getScore() + " tfidf_Model");
 						}
 						writer.println("\n");
 					}
 					writer.close();
 				}
 
-				QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
 				if (args[0].equals("base")) {
+					queries = loadQueries();
+					QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
 					writer = new PrintWriter("qlm.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
 						for (Ranks r : ranks) {
 							writer.println(query.getQueryId() + " Q0 "
 									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
-									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+									+ " " + r.getRank() + " " + r.getScore() + " QLM_Model");
 						}
 						writer.println("\n");
 					}
 					writer.close();
 				} else {
 					queries = loadStemQueries();
+					QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
 					writer = new PrintWriter("qlm_stem.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
 						for (Ranks r : ranks) {
 							writer.println(query.getQueryId() + " Q0 "
 									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
-									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+									+ " " + r.getRank() + " " + r.getScore() + " QLM_Model");
 						}
 						writer.println("\n");
 					}
