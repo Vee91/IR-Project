@@ -1,11 +1,10 @@
 package project;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,7 +21,7 @@ public class BaselineRuns {
 
 	public static void main(String[] args) {
 		DB db = null;
-		if (args[0].equals("base") || args[0].equals("stop")) {
+		if (args[0].equals("base") || args[0].equals("stop") || args[0].equals("prf") ) {
 			db = DBMaker.fileDB(".unigram_positional").make();
 		} else if (args[0].equals("stem")) {
 			db = DBMaker.fileDB(".unigram_stemmed").make();
@@ -41,17 +40,132 @@ public class BaselineRuns {
 		try {
 			if (args[0].equals("stop")) {
 				List<Query> stopQueries = StopListRun.generateStopListQueries(loadQueries());
-				BM25.runBM25(stopQueries, ii, docIdMap, termCount,false);
+				BM25.runBM25(stopQueries, ii, docIdMap, termCount, false);
+				PrintWriter writer = new PrintWriter("BM25_stop.txt", "UTF-8");
+				for (Query query : stopQueries) {
+					List<Ranks> ranks = query.getOutput();
+					for (Ranks r : ranks) {
+						writer.println(query.getQueryId() + " Q0 "
+								+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5) + " "
+								+ r.getRank() + " " + r.getScore() + " BM25_Model");
+					}
+					writer.println("\n");
+				}
+				writer.close();
 				TfIdf.runTfIdf(stopQueries, ii, docIdMap, termCount);
+				writer = new PrintWriter("tfidf_stop.txt", "UTF-8");
+				for (Query query : stopQueries) {
+					List<Ranks> ranks = query.getOutput();
+					for (Ranks r : ranks) {
+						writer.println(query.getQueryId() + " Q0 "
+								+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5) + " "
+								+ r.getRank() + " " + r.getScore() + " BM25_Model");
+					}
+					writer.println("\n");
+				}
+				writer.close();
 				QLM.runJMQLM(stopQueries, ii, docIdMap, termCount, null);
-			} else {
+				writer = new PrintWriter("qlm_stop.txt", "UTF-8");
+				for (Query query : stopQueries) {
+					List<Ranks> ranks = query.getOutput();
+					for (Ranks r : ranks) {
+						writer.println(query.getQueryId() + " Q0 "
+								+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5) + " "
+								+ r.getRank() + " " + r.getScore() + " BM25_Model");
+					}
+					writer.println("\n");
+				}
+				writer.close();
+			} else if (args[0].equals("base") || args[0].equals("stem")) {
 				List<Query> queries = loadQueries();
-				BM25.runBM25(queries, ii, docIdMap, termCount,true);
+				PrintWriter writer = null;
+				BM25.runBM25(queries, ii, docIdMap, termCount, false);
+				if (args[0].equals("base")) {
+					writer = new PrintWriter("BM25.txt", "UTF-8");
+					for (Query query : queries) {
+						List<Ranks> ranks = query.getOutput();
+						for (Ranks r : ranks) {
+							writer.println(query.getQueryId() + " Q0 "
+									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+						}
+						writer.println("\n");
+					}
+					writer.close();
+				} else {
+					writer = new PrintWriter("BM25_stem.txt", "UTF-8");
+					for (Query query : queries) {
+						List<Ranks> ranks = query.getOutput();
+						for (Ranks r : ranks) {
+							writer.println(query.getQueryId() + " Q0 "
+									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+						}
+						writer.println("\n");
+					}
+					writer.close();
+				}
+
 				TfIdf.runTfIdf(queries, ii, docIdMap, termCount);
+				if (args[0].equals("base")) {
+					writer = new PrintWriter("tfidf.txt", "UTF-8");
+					for (Query query : queries) {
+						List<Ranks> ranks = query.getOutput();
+						for (Ranks r : ranks) {
+							writer.println(query.getQueryId() + " Q0 "
+									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+						}
+						writer.println("\n");
+					}
+					writer.close();
+				} else {
+					writer = new PrintWriter("tfidf_stem.txt", "UTF-8");
+					for (Query query : queries) {
+						List<Ranks> ranks = query.getOutput();
+						for (Ranks r : ranks) {
+							writer.println(query.getQueryId() + " Q0 "
+									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+						}
+						writer.println("\n");
+					}
+					writer.close();
+				}
+
 				QLM.runJMQLM(queries, ii, docIdMap, termCount, null);
+				if (args[0].equals("base")) {
+					writer = new PrintWriter("qlm.txt", "UTF-8");
+					for (Query query : queries) {
+						List<Ranks> ranks = query.getOutput();
+						for (Ranks r : ranks) {
+							writer.println(query.getQueryId() + " Q0 "
+									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+						}
+						writer.println("\n");
+					}
+					writer.close();
+				} else {
+					writer = new PrintWriter("qlm_stem.txt", "UTF-8");
+					for (Query query : queries) {
+						List<Ranks> ranks = query.getOutput();
+						for (Ranks r : ranks) {
+							writer.println(query.getQueryId() + " Q0 "
+									+ docIdMap.get(r.getDocId()).substring(0, docIdMap.get(r.getDocId()).length() - 5)
+									+ " " + r.getRank() + " " + r.getScore() + " BM25_Model");
+						}
+						writer.println("\n");
+					}
+					writer.close();
+				}
+
 				if (args[0].equals("base")) {
 					Lucene.runLucene(queries);
 				}
+			} else if (args[0].equals("prf")) {
+				List<Query> queries = loadQueries();
+				BM25.runBM25(queries, ii, docIdMap, termCount, true);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
