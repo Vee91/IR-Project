@@ -36,19 +36,24 @@ public class RunEvaluations {
 
     private static void createBaseLineDic(String path) throws IOException {
         String docContents = new String(Files.readAllBytes(Paths.get(path)));
-        String[] lines=docContents.split("\n");
+        String[] lines=docContents.trim().split("\n");
         for (String line:
                 lines) {
-            String[] lineContens=line.split(" ");
-            fetchedDocs.computeIfPresent(Integer.parseInt(lineContens[0]),(k,v)->{
-                v.add(lineContens[2]);
-                return v;
-            });
-            if(!fetchedDocs.containsKey(Integer.parseInt(lineContens[0])))
-            {
-                List<String> temp=new ArrayList<String>();
-                temp.add(lineContens[2]);
-                fetchedDocs.put(Integer.parseInt(lineContens[0]),temp);
+            System.out.println(line);
+                if(line.length()>=5)
+                {
+                    String[] lineContens=line.split(" ");
+
+                fetchedDocs.computeIfPresent(Integer.parseInt(lineContens[0]),(k,v)->{
+                    v.add(lineContens[2]);
+                    return v;
+                });
+                if(!fetchedDocs.containsKey(Integer.parseInt(lineContens[0])))
+                {
+                    List<String> temp=new ArrayList<String>();
+                    temp.add(lineContens[2]);
+                    fetchedDocs.put(Integer.parseInt(lineContens[0]),temp);
+                }
             }
         }
         Iterator<Map.Entry<Integer, List<String>>> it=fetchedDocs.entrySet().iterator();
@@ -118,7 +123,7 @@ public class RunEvaluations {
     public static void main(String args[]) throws IOException {
         RunEvaluations re=new RunEvaluations();
         re.createRelevantDic();
-        re.createBaseLineDic("Results/BM25Run.txt");
-        re.Evaluate("Results/BM25Evaluation.txt");
+        re.createBaseLineDic("BM25PRF.txt");
+        re.Evaluate("Results/BM25PRFEvaluation.txt");
     }
 }
