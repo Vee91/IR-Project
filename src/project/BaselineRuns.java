@@ -21,7 +21,7 @@ public class BaselineRuns {
 
 	public static void main(String[] args) {
 		DB db = null;
-		if (args[0].equals("base") || args[0].equals("stop") || args[0].equals("prf") ) {
+		if (args[0].equals("base") || args[0].equals("stop") || args[0].equals("prf")) {
 			db = DBMaker.fileDB(".unigram_positional").make();
 		} else if (args[0].equals("stem")) {
 			db = DBMaker.fileDB(".unigram_stemmed").make();
@@ -93,6 +93,7 @@ public class BaselineRuns {
 					}
 					writer.close();
 				} else {
+					queries = loadStemQueries();
 					writer = new PrintWriter("BM25_stem.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
@@ -120,6 +121,7 @@ public class BaselineRuns {
 					}
 					writer.close();
 				} else {
+					queries = loadStemQueries();
 					writer = new PrintWriter("tfidf_stem.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
@@ -147,6 +149,7 @@ public class BaselineRuns {
 					}
 					writer.close();
 				} else {
+					queries = loadStemQueries();
 					writer = new PrintWriter("qlm_stem.txt", "UTF-8");
 					for (Query query : queries) {
 						List<Ranks> ranks = query.getOutput();
@@ -170,6 +173,31 @@ public class BaselineRuns {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static List<Query> loadStemQueries() throws IOException {
+		List<Query> queries = new ArrayList();
+		String endingPattern = "([a-zA-Z]+|\\s+)([\\p{Punct}&&[^-]]+)([a-zA-Z]*)";
+		String startingPattern = "([a-zA-Z]*|\\s*)([\\p{Punct}&&[^-]]+)([a-zA-Z]+)";
+		FileHandler f = new FileHandler("docs/queries/cacm_stem.query.txt", false);
+		StringBuilder fileContent = new StringBuilder();
+		int i = 1;
+		String queryText = null;
+		while ((queryText = f.readLine()) != null) {
+			queryText = queryText.toLowerCase().trim();
+			while (!queryText.equals(queryText.replaceAll(endingPattern, "$1$3"))) {
+				queryText = queryText.replaceAll(endingPattern, "$1$3");
+			}
+			while (!queryText.equals(queryText.replaceAll(startingPattern, "$1$3"))) {
+				queryText = queryText.replaceAll(startingPattern, "$1$3");
+			}
+			Query q = new Query();
+			q.setQuery(queryText);
+			q.setQueryId(i);
+			i++;
+			queries.add(q);
+		}
+		return queries;
 	}
 
 	public static List<Query> loadQueries() throws IOException {
