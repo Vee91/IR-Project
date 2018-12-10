@@ -11,9 +11,9 @@ import java.util.*;
 
 
 public class SnippetGeneration {
-public static void main(String[] args) throws IOException {
-    SnippetGeneration sg=new SnippetGeneration();
-    SnippetGeneration.WriteToHml(BaselineRuns.loadQueries(),"Baseline/BM25.txt");
+    public static void main(String[] args) throws IOException {
+        SnippetGeneration sg=new SnippetGeneration();
+        SnippetGeneration.WriteToHml(BaselineRuns.loadQueries(),"Baseline/BM25.txt");
     }
 
     public static List<String> generateSnippets(String query,String docid) throws IOException {
@@ -41,22 +41,24 @@ public static void main(String[] args) throws IOException {
         String docContents = new String(Files.readAllBytes(Paths.get(resultPath)));
         String[] resultArray=docContents.split("\n");
         writer.write("<!DOCTYPE html>");
+        queries=StopListRun.generateStopListQueries(queries);
         for (Query query:
-             queries) {
+                queries) {
             writer.write("{Query id = " + query.getQueryId() + " }<br />");
-            for(String docDetails:resultArray) {
+            for(String docDetails:resultArray)
+            {
                 String[] lineContents=docDetails.split(" ");
                 if(lineContents.length>=5)
                 {   if(Integer.parseInt(lineContents[0])==query.getQueryId()) {
-                        writer.write("{Doc Name = " + lineContents[2] + " }<br />");
-                        writer.write(" {Snippet} <br />");
-                        System.out.println(lineContents[2]);
-                        List<String> snippets = generateSnippets(query.getQuery(), lineContents[2]+".html");
-                        writer.write(String.join("...", snippets) + "<br />");
-                        writer.write(" {\\Snippet} <br />");
-                        writer.write("{\\Doc Name = " + lineContents[2] + " }<br />");
-                        writer.write("<br \\>");
-                    }
+                    writer.write("{Doc Name = " + lineContents[2] + " }<br />");
+                    writer.write(" {Snippet} <br />");
+                    System.out.println(lineContents[2]);
+                    List<String> snippets = generateSnippets(query.getQuery(), lineContents[2]+".html");
+                    writer.write(String.join("...", snippets) + "<br />");
+                    writer.write(" {\\Snippet} <br />");
+                    writer.write("{\\Doc Name = " + lineContents[2] + " }<br />");
+                    writer.write("<br \\>");
+                }
                 }
             }
             writer.write("{/Query}<br />");
@@ -71,7 +73,7 @@ public static void main(String[] args) throws IOException {
         for (int i=0;i<queryTerms.length-size-1;i++) {
             String gram="";
             if(size==3)
-            gram=queryTerms[i]+" "+queryTerms[i+1]+" "+queryTerms[i+2];
+                gram=queryTerms[i]+" "+queryTerms[i+1]+" "+queryTerms[i+2];
             else if(size==2)
                 gram=queryTerms[i]+" "+queryTerms[i+1];
             else

@@ -172,7 +172,7 @@ public class BaselineRuns {
 		}
 	}
 
-	private static List<Query> loadQueries() throws IOException {
+	public static List<Query> loadQueries() throws IOException {
 		List<Query> queries = new ArrayList();
 		String endingPattern = "([a-zA-Z]+|\\s+)([\\p{Punct}&&[^-]]+)([a-zA-Z]*)";
 		String startingPattern = "([a-zA-Z]*|\\s*)([\\p{Punct}&&[^-]]+)([a-zA-Z]+)";
